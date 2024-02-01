@@ -36,3 +36,6 @@ B = ('num1', 'num2', 'num3')
 C = 0
 num_dict = dict.fromkeys(B, C)
 print(num_dict)
+
+colorArray = ['Red', 'Green', 'Blue', 'Yellow']
+print (colorArray)
