@@ -44,6 +44,7 @@ D = 'Hey'
 print(bool(A))
 print(bool(D))
 if C > B: print('C is greater than B')
+# This booleans would be False
 bool(False)
 bool(None)
 bool(0)
