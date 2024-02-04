@@ -59,3 +59,14 @@ myAdd(2,4)
 # using the type()
 print(type(3))
 print(type('hello'))
+
+# using input() and \ backslash
+fName = input('What is your "first name"?\n>>> ')
+lName = input ('What is your "last name"?\n>>> ')
+print('Hello {} {}, welcome to Python!'.format(fName, lName) )
+
+# using Data Normalization
+def getName():
+    fName = input('Please type in your first name without any capitalizations.\n>>> ').lower()
+    print ('Thank you {}, welcome back!'.format(fName))
+getName()
