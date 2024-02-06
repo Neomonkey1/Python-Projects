@@ -74,14 +74,14 @@ def score(nice,mean,name):
 
 def win(nice,mean,name):
     # Substitute the {} wildcards with our variables values
-    print("\nNice job {}, you win! \nEveryone loves you and you've \nmade lots of friends along the way!".format(name))
+    print("\nNice job {}, you win! \nEveryone loves you and you've \nmade lots of friends along the way!".format(name))    
     # call again function and pass in our variables
     again(nice,mean,name)
     
 
 def lose(nice,mean,name):
     # Substittue the {} wildcards with our variable values
-    print('\nAhhhh too bad, game over! \n{}, you live in a dirty beat-up \nvan by the river, wretched and alone!'.format(name))
+    print('\nAhhhh too bad, game over! \n{}, you live in a dirty beat-up \nvan by the river, wretched and alone! \nYou big MEANIE!!!'.format(name))
     # call again function and pass in our variables
     again(nice,mean,name)
 
@@ -90,7 +90,7 @@ def lose(nice,mean,name):
 def again(nice,mean,name):
     stop = True
     while stop:
-        choice = input('\nDo you want to play again? (y/n):\n>>> ').lower()
+        choice = input("\nLet's play again? (y/n):\n>>> ").lower()
         if choice == 'y':
             stop = False
             reset(nice,mean,name)
