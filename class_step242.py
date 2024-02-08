@@ -1,6 +1,6 @@
 
 
-# Creating a class
+# Creating parent class
 
 class Computer:
     #creating a dunder method to attach the arguments for creating the class object
@@ -11,8 +11,20 @@ class Computer:
         self.disk_space = disk_space
         self.ram = ram
 
-#adding arguments to make object
+#creating child class
+class Laptop(Computer):
+    def __init__(self,screen_size,battary_life):
+        self.screen_size = screen_size
+        self.battary_life = battary_life
+
+
+
+#adding arguments to make parent object
 comp = Computer('Dell', 'Intel Core i7', 'Windows 11', '1 TB', '16 GB')
+
+#adding arguments to make child class object
+lapComp = Laptop('HP', 'Intel Corei7', 'Windows 11', '500 GB', '8 GB', '15 inch', '4 hours')
+
 
 #adding a method
 def myFunc(self):
@@ -23,3 +35,4 @@ def myFunc(self):
 
 if __name__ == '__main__':
     myFunc(comp)
+    myFunc(lapComp)
