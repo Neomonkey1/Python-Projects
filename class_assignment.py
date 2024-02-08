@@ -22,7 +22,4 @@ add_person = Person('John', 'Smith')
 print(add_person.fname)
 
 
-add_teacher = Teacher('Joe','Jones','Math',5)
-
-print(add_teacher.lname)
 
