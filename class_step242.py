@@ -13,10 +13,14 @@ class Computer:
 
 #creating child class
 class Laptop(Computer):
-    def __init__(self,screen_size,battary_life):
+    def __init__(self, brand, cpu, os, disk_space, ram, screen_size,battary_life):
+        self.brand = brand
+        self.cpu = cpu
+        self.os = os
+        self.disk_space = disk_space
+        self.ram = ram
         self.screen_size = screen_size
         self.battary_life = battary_life
-
 
 
 #adding arguments to make parent object
@@ -35,4 +39,8 @@ def myFunc(self):
 
 if __name__ == '__main__':
     myFunc(comp)
+    
     myFunc(lapComp)
+    
+    print(lapComp.battary_life,lapComp.screen_size)
+    
