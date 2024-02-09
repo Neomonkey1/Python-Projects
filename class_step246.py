@@ -36,13 +36,13 @@ class Ford(Vehicle):
 class Toyota(Vehicle):
     color = 'White'
     model = 'camry'
-    lease_num = 'lc666'
+    confirm_num = 'lc666'
 
     #method to identify using lease_num instead of vin_num to identify
     def identify(self):
         entry_model = input('Enter model of vehicle: ')
-        entry_lease_num = input('Enter your lease number: ')
-        if (entry_model == self.model and entry_lease_num == self.lease_num):
+        entry_confirm_num = input('Enter your confirmation number: ')
+        if (entry_model == self.model and entry_confirm_num == self.confirm_num):
             print("Confirm, your lease for the {} is good.".format(self.model))
         else:
             print("Incorrect, please check model and lease number.")
