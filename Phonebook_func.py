@@ -76,7 +76,7 @@ def count_records(cur):
 
 # Select item in ListBox
 def onSelect(self,event):
-    #calling the even is the self.1stList1 widget
+    #calling the event is the self.1stList1 widget
     varList = event.widget
     select - varList.curselection()[0]
     value = varList.get(select)
@@ -101,16 +101,16 @@ def addToList(self):
     var_fname = self.txt_fname.get()
     var_lname = self.txt_lname.get()
     # normalize the data to keep it consistent in the database
-    var_fname = var_fname.string() # This will remove any blank spaces before and after the user's entry
-    var_lname = var_lname.string() # This will ensure that the first character in each word is capitalized
+    var_fname = var_fname.strip() # This will remove any blank spaces before and after the user's entry
+    var_lname = var_lname.strip() # This will ensure that the first character in each word is capitalized
     var_fname = var_fname.title()
     var_lname = var_lname.title()
     var_fullname = ("{} {}".format(var_fname,var_lname)) #combine our normailzed names into a fullname
     print("var_fullname: {}".format(var_fullname))
     var_phone = self.txt_phone.get().strip()
-    var_email = self.txt_email.get().string()
+    var_email = self.txt_email.get().strip()
     if not "@" or not "." in var_email:
-        print("Incorrect email format!"
+        print("Incorrect email format!")
     if (len(var_fname) > 0) and (len(var_lname) > 0) and (len(var_phone) > 0) and (len(var_email) > 0): # enforce the user to provide both names
         conn = sqlite3.connect('db_phonebook.db')
         with conn:
