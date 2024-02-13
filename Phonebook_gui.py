@@ -50,11 +50,11 @@ def load_gui(self):
 
     # Define the listbox with a scrollbar and grid them
     self.scrollbar1 = Scrollbar(self.master,orient=VERTICAL)
-    self.1stList1 = Listbox(self.master,exportselection=0,yscrollcommand=self.scrollbar1.set)
-    self.1stList1.bind('<<ListboxSelect>>',lambda event: Phonebook_func.onSelect(self,event))
-    self.scrollbar1.config(command=self.1stList1.yview)
+    self.lstList1 = Listbox(self.master,exportselection=0,yscrollcommand=self.scrollbar1.set)
+    self.lstList1.bind('<<ListboxSelect>>',lambda event: Phonebook_func.onSelect(self,event))
+    self.scrollbar1.config(command=self.lstList1.yview)
     self.scrollbar1.grid(row=1,column=2,rowspan=7,columnspan=1,padx=(0,0),pady=(0,0),sticky=N+E+S)
-    self.1stList1.grid(row=1,column=2,rowspan=7,columnspan=3,padx=(0,0),pady=(0,0),sticky=N+E+S+W)
+    self.lstList1.grid(row=1,column=2,rowspan=7,columnspan=3,padx=(0,0),pady=(0,0),sticky=N+E+S+W)
     
     self.btn_add = tk.Button(self.master,width=12,height=2,text='Add',command=lambda:  Phonebook_func.addToList(self))
     self.btn_add.grid(row=8,column=0,padx=(25,0),pady=(45,10),sticky=W)
