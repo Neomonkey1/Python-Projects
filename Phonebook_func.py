@@ -45,8 +45,8 @@ def create_db(self):
     conn = sqlite3.connect('db_phonebook.db')
     with conn:
         cur = conn.cursor()
-        cur.execute("CREATE TABLE if not exists tbl_phonebook( \
-            ID INTERGER PRIMARY KEY AUTOINCREMENT, \
+        cur.execute("CREATE TABLE IF NOT EXISTS tbl_phonebook( \
+            ID INTEGER PRIMARY KEY AUTOINCREMENT, \
             col_fname TEXT, \
             col_lname TEXT, \
             col_fullname TEXT, \
@@ -116,13 +116,13 @@ def addToList(self):
         with conn:
               cursor = conn.cursor()
               # Check the database for existance of the fullname, if so we will alert user and disregard request
-              cursor.execute("""SELECT COUNT(col_fulname) FROM tbl_phonebook WHERE col_fullname = '{}'""".format(var_fullname)) #,(var_fullname))
+              cursor.execute("""SELECT COUNT(col_fullname) FROM tbl_phonebook WHERE col_fullname = '{}'""".format(var_fullname)) #,(var_fullname))
               count = cursor.fetchone()[0]
               chkName = count
               if chkName == 0: # if this is 0 then there is no existance of the fullname and we can add new data
                   print("chkName: {}".format(chkName))
                   cursor.execute("""INSERT INTO tbl_phonebook (col_fname,col_lname,col_fullname,col_phone,col_email) VALUES (?,?,?,?,?)""",(var_fname,var_lname,var_fullname,var_phone,var_email))
-                  self.1stList1.insert(END, var_fullname) # update listbox with the new fullname
+                  self.lstList1.insert(END, var_fullname) # update listbox with the new fullname
                   onClear(self) # call the function to clear all of the textboxes
               else:
                   messagebox.showerror("Name Error","'{}' already exists in the database! Please choose a different name.".format(var_fullname))
@@ -133,7 +133,7 @@ def addToList(self):
         messagebox.showerror("Missing Text Error","Please ensure that there is data in all four fields.") 
 
 def onDelete(self):
-    var_select = self.1stList1.get(self.1stList1.curselection()) # Listbox's selected value
+    var_select = self.lstList1.get(self.lstList1.curselection()) # Listbox's selected value
     conn = sqlite3.connect('db_phonebook.db')
     with conn:
         cur = conn.cursor()
@@ -151,10 +151,10 @@ def onDelete(self):
                 onDelete(self) # call the function to clear all of the textboxes and the selected index of listbox
                 onRefresh(self) # update the listbox of the changes
                 conn.commit()
-       else:
-           confirm = messagebox.showerror("Last Record Error", "({}) is the last record in the database and cannot be deleted at this time. \n\nPlease add another record first before you can delete ({}).".format(var_select,var_select))
-     conn.close()
-
+        else:
+            confirm = messagebox.showerror("Last Record Error", "({}) is the last record in the database and cannot be deleted at this time. \n\nPlease add another record first before you can delete ({}).".format(var_select,var_select))
+    conn.close()
+     
 def onDeleted(self):
     # clear the text in these textboxes
     self.txt_fname.delete(0,END)
@@ -163,8 +163,8 @@ def onDeleted(self):
     self.txt_email.delete(0,END)
     onRefresh(self) # update the listbox of the changes
     try:
-        index = self.1stList1.curselection()[0]
-        self.1stList1.delete(index)
+        index = self.lstList1.curselection()[0]
+        self.lstList1.delete(index)
     except IndexError:
         pass
 
@@ -176,10 +176,10 @@ def onClear(self):
     self.txt_email.delete(0,END)
 
 
-def onRefresh(self)
+def onRefresh(self):
     # Populate the listbox, coinciding with the database
-    self.1stList1.delete(0,END)
-    conn.sqlite3.connect('db_phonebook.db')
+    self.lstList1.delete(0,END)
+    conn = sqlite3.connect('db_phonebook.db')
     with conn:
         cursor = conn.cursor()
         cursor.execute("""SELECT COUNT(*) FROM tbl_phonebook""")
@@ -189,14 +189,14 @@ def onRefresh(self)
             cursor.execute("""SELECT col_fullname FROM tbl_phonebook""")
             varList = cursor.fetchall()[i]
             for item in varList:
-                self.1stList1.insert(0,str(item))
+                self.lstList1.insert(0,str(item))
                 i = i + 1
     conn.close()
 
 def onUpdate(self):
     try:
-        var_select = self.1stList1.curselection()[0] # index of the list selection
-        var_value = self.1stList1.get(var_select) # list selection's text value
+        var_select = self.lstList1.curselection()[0] # index of the list selection
+        var_value = self.lstList1.get(var_select) # list selection's text value
     except:
         messagebox.showinfo("Missing selection","No name was selected from the list box. \nCancelling the Update request.")
         return
