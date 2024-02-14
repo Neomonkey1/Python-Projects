@@ -78,7 +78,7 @@ def count_records(cur):
 def onSelect(self,event):
     #calling the event is the self.1stList1 widget
     varList = event.widget
-    select - varList.curselection()[0]
+    select = varList.curselection()[0]
     value = varList.get(select)
     conn = sqlite3.connect('db_phonebook.db')
     with conn:
@@ -149,7 +149,7 @@ def onDelete(self):
                     cursor = conn.cursor()
                     cursor.execute("""DELETE FROM tbl_phonebook WHERE col_fullname = '{}'""".format(var_select))
                 onDelete(self) # call the function to clear all of the textboxes and the selected index of listbox
-                onRefresh(self) # update the listbox of the changes
+                ##onRefresh(self) # update the listbox of the changes
                 conn.commit()
         else:
             confirm = messagebox.showerror("Last Record Error", "({}) is the last record in the database and cannot be deleted at this time. \n\nPlease add another record first before you can delete ({}).".format(var_select,var_select))
@@ -161,7 +161,7 @@ def onDeleted(self):
     self.txt_lname.delete(0,END)
     self.txt_phone.delete(0,END)
     self.txt_email.delete(0,END)
-    onRefresh(self) # update the listbox of the changes
+    ##onRefresh(self) # update the listbox of the changes
     try:
         index = self.lstList1.curselection()[0]
         self.lstList1.delete(index)
@@ -204,7 +204,7 @@ def onUpdate(self):
     # For name changes, the user will need to delete the entire record and start over.
     var_phone = self.txt_phone.get().strip() # normalize the data to maintain database intergrity
     var_email = self.txt_email.get().strip()
-    if (len(ver_phone) > 0) and (len(var_email) > 0): # ensure that there is data present
+    if (len(var_phone) > 0) and (len(var_email) > 0): # ensure that there is data present
         conn = sqlite3.connect('db_phonebook.db')
         with conn:
             cur = conn.cursor()
