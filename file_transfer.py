@@ -40,6 +40,16 @@ class ParentWindow(Frame):
         # Positions entry in GUI using tkinter grid() padx and pady are the same
         # as the button to ensure they will line up
         self.destination_dir.grid(row=1, column=1, columnspan=2, padx=(20,10), pady=(15,10))
+
+        # Creates button to transfer files
+        self.transfer_btn = Button(text="Transfer Files", width= 20, command=self.transferFiles)
+        # Positions transfer files button
+        self.transfer_btn.grid(row=2, column=1, padx=(200, 0), pady=(0, 15))
+
+        # Creates an Exit button
+        self.exit_btn = Button(text="Exit", width=20, command=self.exit_program)
+        # Positions the Exit button
+        self.exit_btn.grid(row=2, column=2, padx=(10, 40), pady=(0, 15))
         
 
     # Creates function to select source directory.
@@ -61,7 +71,25 @@ class ParentWindow(Frame):
         self.destination_dir.insert(0, selectDestDir)
 
 
-        
+    # Creates function to tansfer files from one directory to another
+    def transferFiles(self):
+        # Gets source directory
+        source = self.source_dir.get()
+        # Gets destionation directory
+        destination = self.destination_dir.get()
+        # Gets a list of files in the source directory
+        source_files = os.listdir(source)
+        # Runs through each file in the source directory
+        for i in source_files:
+            #moves each file from the source to the destination
+            shutil.move(source + '/' + i, destination)
+            print(i + ' was successfully transferred.')
+    
+    # Creates function to exit program
+    def exit_program(self):
+        # root is the main GUI window, the Tkinter destory method
+        # tells python to terminate root.mainloop and all widgets in sides the GUI window
+        root.destroy()
 
 
 
