@@ -11,6 +11,8 @@ from tkinter import *
 import tkinter.filedialog
 import os
 import shutil
+from datetime import datetime, timedelta
+import stat
 
 # Making a class for GUI 
 class ParentWindow(Frame):
@@ -79,11 +81,19 @@ class ParentWindow(Frame):
         destination = self.destination_dir.get()
         # Gets a list of files in the source directory
         source_files = os.listdir(source)
+
+        # Gets current time
+        current_time = datetime.now()
         # Runs through each file in the source directory
         for i in source_files:
-            #moves each file from the source to the destination
-            shutil.move(source + '/' + i, destination)
-            print(i + ' was successfully transferred.')
+            file_path = os.path.join(source, i)
+            # Get the mod time of the file
+            file_mod_time = datetime.fromtimestamp(os.path.getmtime(file_path))
+            # Checks if file was modified within last 24 hours
+            if current_time - file_mod_time < timedelta(hours=24):
+                # Moves only files modified within last 24 hours
+                shutil.move(file_path, destination)            
+                print(i + ' was successfully transferred.')
     
     # Creates function to exit program
     def exit_program(self):
