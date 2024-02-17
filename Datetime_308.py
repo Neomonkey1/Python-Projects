@@ -38,9 +38,9 @@ if __name__ == '__main__':
     print(ny_time)
     print(london_time)
 
-    print(is_branch_open(pl_time,branch_open,branch_close))
-    print(is_branch_open(ny_time,branch_open,branch_close))
-    print(is_branch_open(london_time,branch_open,branch_close))
+    print("At this time the Portland branch is open for business " + str(is_branch_open(pl_time,branch_open,branch_close)))
+    print("At this time the New York branch is open for business " + str(is_branch_open(ny_time,branch_open,branch_close)))
+    print("At this time the London branch is open for business " + str(is_branch_open(london_time,branch_open,branch_close)))
 
 
 
