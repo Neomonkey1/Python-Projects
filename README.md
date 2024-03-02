@@ -13,6 +13,6 @@ This project functions as a phone book for a user. It saves a contact's name, ph
 # Check Files GUI
 This project allows the user to choose transfer all .txt files from one chosen directory to another. All files that are moved will be saved in a database.
 
-# Mean or Nice game
+# Nice or Mean game
 This basic game let's you choose to be Mean or Nice to persons you come across along your adventure.
 
